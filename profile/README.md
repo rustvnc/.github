@@ -1,38 +1,23 @@
 # RustVNC
 
-> **High-performance, memory-safe VNC solutions built with Rust**
+> **Production-ready Rust libraries for VNC protocol implementation**
 
 [![Rust](https://img.shields.io/badge/rust-1.90%2B-orange.svg)](https://www.rust-lang.org/)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 
-RustVNC provides a complete VNC (Virtual Network Computing) ecosystem implemented in Rust, offering superior memory safety, modern async architecture, and exceptional performance compared to traditional C/C++ implementations.
+RustVNC is an ecosystem of Rust libraries for implementing the VNC (Virtual Network Computing) protocol. Build VNC servers, clients, proxies, and recording tools with memory safety, modern async I/O, and full RFC 6143 compliance.
 
-## Why RustVNC?
+## Why Rust for VNC?
 
-Traditional VNC servers are plagued by memory vulnerabilities (buffer overflows, use-after-free) and blocking I/O architectures. RustVNC solves these problems with:
+Traditional VNC implementations in C/C++ suffer from memory vulnerabilities and blocking I/O. Our Rust libraries provide:
 
 - **Memory Safety**: Zero buffer overflows, use-after-free bugs, or data races thanks to Rust's ownership system
 - **Modern Architecture**: Built on Tokio's async runtime for efficient concurrent connection handling
 - **Performance**: Zero-copy framebuffer updates, SIMD-optimized encoding, and persistent compression streams
-- **RFC Compliance**: Full RFC 6143 protocol implementation with 11 encoding types
+- **RFC 6143 Compliance**: Full protocol implementation with 11 encoding types
+- **Reusability**: Modular design - use what you need, from encoding algorithms to complete server implementations
 
-## Our Projects
-
-### [RustVNC](https://github.com/rustvnc/RustVNC) - Android VNC Server
-
-**Android VNC remote desktop server** with a pure Rust VNC implementation.
-
-- Screen sharing with configurable scaling
-- Reverse VNC and UltraVNC repeater support
-- Built-in noVNC web client for browser access
-- Intent-based API for automation (Tasker, MacroDroid, etc.)
-- Zeroconf/Bonjour auto-discovery
-- Password protection and access control
-
-**[Download →](https://github.com/rustvnc/RustVNC/releases)** | **[Documentation →](https://github.com/rustvnc/RustVNC#readme)**
-
----
+## Core Libraries
 
 ### [rustvncserver](https://github.com/rustvnc/rustvncserver) - VNC Server Library
 
@@ -122,12 +107,26 @@ For a 1920×1080 framebuffer update:
 | ZYWRLE | 17 | ✅ | ✅ | ✅ | TightVNC |
 | TightPng | -260 | ✅ | ✅ | ✅ | Modern clients |
 
-## Getting Started
+---
 
-### For Android Users
-1. Download [RustVNC](https://github.com/rustvnc/RustVNC/releases) from releases
-2. Grant screen capture permissions
-3. Connect using any VNC client (or the built-in web client)
+## Example Implementation
+
+### [RustVNC](https://github.com/rustvnc/RustVNC) - Android VNC Server
+
+A production Android app demonstrating rustvncserver in action:
+
+- Screen sharing with configurable scaling
+- Reverse VNC and UltraVNC repeater support
+- Built-in noVNC web client for browser access
+- Intent-based API for automation (Tasker, MacroDroid, etc.)
+- Zeroconf/Bonjour auto-discovery
+- Password protection and access control
+
+**[Download →](https://github.com/rustvnc/RustVNC/releases)** | **[Documentation →](https://github.com/rustvnc/RustVNC#readme)**
+
+---
+
+## Getting Started
 
 ### For Rust Developers
 ```toml
@@ -136,7 +135,7 @@ rustvncserver = "2.0"
 rfb-encodings = "0.1"
 ```
 
-See [rustvncserver documentation](https://github.com/rustvnc/rustvncserver#readme) for examples.
+See [rustvncserver documentation](https://github.com/rustvnc/rustvncserver#readme) for API examples and usage.
 
 ## Contributing
 
@@ -159,19 +158,25 @@ Security is a top priority. We have security policies in place:
 
 ## Roadmap
 
-- [ ] iOS support via rustvncserver
-- [ ] VNC client implementation
-- [ ] VNC proxy/load balancer
-- [ ] VNC session recording and playback
+Library enhancements:
+- [ ] VNC client library implementation
+- [ ] VNC proxy/load balancer library
+- [ ] VNC session recording and playback utilities
 - [ ] Additional encoding optimizations (SIMD for ZRLE)
-- [ ] WebRTC transport layer
-- [ ] Wayland support improvements
+- [ ] H.264/H.265 encoding support
+
+Example implementations:
+- [ ] Desktop VNC client
+- [ ] Web-based VNC proxy
 
 ## License
 
-- **RustVNC**: GPL-2.0 (inherited from droidVNC-NG)
-- **rustvncserver**: Apache-2.0
-- **rfb-encodings**: Apache-2.0
+**Core Libraries**: Apache-2.0
+- rustvncserver
+- rfb-encodings
+
+**Example Implementations**: GPL-2.0
+- RustVNC Android app (inherited from droidVNC-NG)
 
 ## Community & Support
 
